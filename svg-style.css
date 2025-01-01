@@ -1,0 +1,27 @@
+/**svg styling**/
+/**mobtecnica**/
+
+circle{
+    /*fill: #005e99;*/
+    /*stroke: #005e99;*/
+    /*stroke-width: 1;*/
+}
+text{
+
+}
+.childcircle{
+    stroke: #eec16e;
+    stroke-width: 2;
+}
+.parentcircle{
+    fill: #005e99;
+    stroke: #005e99;
+    stroke-width: 2;
+}
+line{
+    stroke:#eeeeee
+}
+.modal-backdrop {
+    background-color: #fff !important;
+ 
+}

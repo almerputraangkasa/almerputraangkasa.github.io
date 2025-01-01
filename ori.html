@@ -1,0 +1,1030 @@
+<!--
+ * @license Proprietary
+ * @modified by AlmerPutraAngkasa aka ArsyDeveloper
+ -->
+
+<!DOCTYPE html>
+<html>
+
+	<link rel='stylesheet' href='bootstrap.min.css' />
+    <link rel='stylesheet' href='svg-style.css' />
+    <script src='jquery.js'></script>
+    <script src='bootstrap.js' ></script>
+    <script src='filesaver.js' ></script>
+
+
+    <style>
+        *{
+            overflow:visible;
+        }
+        body {
+            margin: 0px;
+            padding: 0px;
+        }
+		
+    </style>
+	<head>
+		
+<meta charset="utf-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+<meta http-equiv="Pragma" content="no-cache" />
+<meta http-equiv="Expires" content="0" />  
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black">
+		
+	</head>
+    <body>
+        <div style='width:100%'>
+            <!-- Modal -->
+            <div class='modal fade' id='myModal' role='dialog' style="height:500px;position:fixed">
+                <div class='modal-dialog' style='width:300px'>
+                    <!-- Modal content-->
+                    <div class='modal-content'>
+                        <div class='modal-header'>
+                            <button type='button' class='close' data-dismiss='modal'>&times;</button>
+                            <h4 class='modal-title'>Coupler Details</h4>
+                        </div>
+                        <div class='modal-body'>
+                            <div class='centre' style='font-size:16px'>
+                                <form class="form-horizontal" role="form" id='submitcoupler'>
+                                    
+                                    <div class="form-group">
+
+
+
+                                        
+                                        <table cellspacing="10" style="border-collapse: inherit;border-spacing:8px">
+                                       <tbody>
+                                        <tr style="padding:5px">
+                                            <td style="width:50%"> </td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Cable Length </td>
+                                            <td>
+                                            <input type="number"  step=".01" value="0" title="enter a valid length" pattern="\d+(\.\d*)?" class="form-control" required="" name="Cable Length" id="input_value_node">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Select Coupler </td>
+                                            <td>
+                                               <select class="form-control" id="selectercouplername">
+                                                <option selected="">1/99</option>
+                                                <option>2/98</option>
+                                                <option>3/97</option>
+                                                <option>4/96</option>
+                                                <option>5/95</option>
+                                                <option>6/94</option>
+                                                <option>7/93</option>
+                                                <option>8/92</option>
+                                                <option>9/91</option>
+                                                <option>10/90</option>
+                                                <option>12.5/87.5</option>
+                                                <option>15/85</option>
+                                                <option>20/80</option>
+                                                <option>25/75</option>
+                                                <option>30/70</option>
+                                                <option>33/67</option>
+                                                <option>35/65</option>
+                                                <option>40/60</option>
+                                                <option>45/55</option>
+                                                <option>50/50</option>
+												<option>1:4</option>
+												<option>1:8</option>
+												<option>1:16</option>
+												<option>1:32</option>
+												<option>1:64</option>
+												<option>1:128</option>
+                                            </select>
+
+
+
+
+
+                                            </td>
+                                        </tr>
+                                           
+   <tr>
+                                            <td> </td>
+                                            <td>
+                                            <button type="submit" value="Submit" class="btn btn-default form-control">Submit</button>
+
+                                            </td>
+                                        </tr>
+                                       </tbody>
+                                    </table>
+
+                                     
+                                    </div>
+                                  
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class='modal fade' id='transmitter' role='dialog' style="height:500px;position:fixed">
+                <div class='modal-dialog' style='width:300px'>
+                    <!-- Modal content-->
+                    <div class='modal-content'>
+                        <div class='modal-header'>
+                            <button type='button' class='close' data-dismiss='modal'>&times;</button>
+                            <h4 class='modal-title'>Transmitter </h4>
+                        </div>
+                        <div class='modal-body'>
+                            <div class='centre' style='font-size:16px'>
+                                <form class="form-horizontal" id="submittr">
+
+                                    
+                                   <table cellspacing="10" style="border-collapse: inherit;border-spacing:8px">
+                                       <tbody>
+                                        <tr style="padding:5px">
+                                            <td style="width:50%">Optic Power </td>
+                                            <td><input type="number"  step=".01" id="transmitter_inp_pow"  name="transmitter" class="form-control" required pattern="\d+(\.\d*)?" title="enter a valid power"></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Laser Frequency </td>
+                                            <td>
+                                            <select onchange="document.getElementById('transmitter_loss_per_km').value=this.value">
+												<option value="0.4">1310</option>
+												<option value="0.25">1550</option> 
+										</select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>Loss Per Km </td>
+                                            <td>
+                                            <input type="number"  step=".01" readonly="" value="0.4" class="form-control" name="loss_per_km" required="" id="transmitter_loss_per_km">
+                                            </td>
+                                        </tr>
+                                           
+                                            <tr>
+                                            <td>Min End Signal </td>
+                                            <td>
+                                          <input type="number"  step=".01" value="-1" class="form-control" name="min_end_signal" required="" id="transmitter_min_end_signal">
+                                            </td>
+                                        </tr>
+                                            <tr>
+                                            <td>Connector Loss </td>
+                                            <td>
+                                            <input type="number"  step=".01" value="0.5" class="form-control" name="connector_loss" required="" id="transmitter_connector_loss">
+                                            </td>
+                                        </tr>
+                                            <tr>
+                                            <td>Safety Margin </td>
+                                            <td>
+                                          <input type="number"  step=".01" onfocusout="return safetyCheck();" class="form-control" name="safty_margin" required="" value="0" id="transmitter_safty_margin">
+                                            </td>
+                                        </tr>
+                                            <tr>
+                                            <td>Loss Per Km </td>
+                                            <td>
+                                            <input type="number"  step=".01" readonly="" value="0.4" class="form-control" name="loss_per_km" required="" id="transmitter_loss_per_km">
+                                            </td>
+                                        </tr>
+                                           
+                                             <tr>
+                                            <td> </td>
+                                            <td>
+                                            <button class="btn btn-default form-control" value="Submit" type="submit">Submit</button>
+                                            </td>
+                                        </tr>
+                                       </tbody>
+                                    </table>
+                                    
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			<svg xmlns="http://www.w3.org/2000/svg" height='10000' width='100000' id='mytree'>
+				<rect id='rect' class =" " data-toggle="modal" data-target="#transmitter" x='5000' y='20' width='120' height='60' stroke='#e8b043' stroke-width='1'  fill='white'/>
+
+                <!--<defs>-->
+                    <pattern id="image" x="10" y="10" width="20" height="20" patternUnits="userSpaceOnUse" >
+                        <image x="0" y="0" xlink:href="plus.png"></image>
+                    </pattern>
+                <!--</defs>-->
+            </svg>
+			<div id="editor"></div>
+            
+        </div>	
+        <script>
+        var lastLevel = 1;
+		var $xml = '';
+		var xmlDoc = '';
+		var lastNode = '';
+		var valueExceedsLimit = 0; 
+		var dialogShowed = false;
+		 $(document).ready(function(){
+                window.scroll(4880, 0);
+            });
+		txt = getText(5020, 50,'transid','Transmitter','#6ac57f');
+		$('#mytree').append(txt);
+
+        function safetyCheck(){
+            var val = confirm('are you sure to change this value?');
+            if(val==true){
+            }
+            else{
+                $('#transmitter_safty_margin').val('0.0');
+                return false;
+            }
+        }
+		function changeloss(valu)
+		{
+			if(valu == 1310)
+			{
+				document.getElementById('transmitter_loss_per_km').value = 0.4;
+			}		
+			else
+			{
+				document.getElementById('transmitter_loss_per_km').value = 0.25;
+			}
+		}
+
+		function setTransmitter() {
+			if($xml !='') {
+				//xmlDoc = $.parseXML( xml ),
+			  //$xml = $( xmlDoc ),
+			  $power = $xml.find( "transmitter > inputPower" );
+			  $power.text( transmitter_inp_va );
+		  } else {
+			xml = "<tree><transmitter><id>transmitter_input</id><inputPower>"+transmitter_inp_va+"</inputPower></transmitter><circles></circles></tree>",
+				 xmlDoc = $.parseXML( xml ),
+				  $xml = $( xmlDoc );
+				  }
+				  $('#transinp').remove();
+			txt = getText(5030, 70,'transinp',transmitter_inp_va+' dBm','#000');
+            $('#mytree').append(txt);
+			addCircle();
+		  }
+		  function getcircleXml(id,x,y,parent,level,position,inputPower,couplerName,cableLength,outputPower1,outputPower2,circlass)
+		  {
+		  
+		  if(lastLevel < (level*1)){
+		  lastLevel = level;
+		  }
+			var xml = '<circle>'+
+						'<id>'+id+'</id>'+
+						'<class>'+circlass+'</class>'+
+						'<x>'+x+'</x>'+
+						'<y>'+y+'</y>'+
+						'<parent>'+parent+'</parent>'+
+						'<level>'+level+'</level>'+
+						'<position>'+position+'</position>'+
+						'<inputPower>'+inputPower+'</inputPower>'+
+						'<couplerName>'+couplerName+'</couplerName>'+
+						'<cableLength>'+cableLength+'</cableLength>'+
+						'<outputPower1>'+outputPower1+'</outputPower1>'+
+						'<outputPower2>'+outputPower2+'</outputPower2>'+
+					'</circle>';
+
+			return xml;
+		  }
+		  function addCircle()
+		  {
+			  //$xml = $( xmlDoc ),
+			  $title = $xml.find( "circle > id" );
+			  if($title.length <= 0) {
+				  circ = $xml.find('circles');
+				  xml = getcircleXml('circle-5060-1','5060','150','root','1','0','','','','','','childcircle');
+				  $(circ).append(xml);
+				  drawTree();
+			  } else{
+				updateValues();
+			  }
+			  
+			  line = getLine(5060, 80, 5060,130,'rectline');
+              $('#mytree').append(line);
+			  //console.log($xml.children().eq(0));
+		  }
+		  function drawTree() {
+			
+				circ = $xml.find('circles > circle');
+				circ.each(function(){
+				id = $(this).find('id').text();
+				x = $(this).find('x').text();
+				y = $(this).find('y').text();
+				x= parseInt(x);
+				y= parseInt(y);
+				level = $(this).find('level').text();
+				parent = $(this).find('parent').text();
+				position = $(this).find('position').text();
+                circleclass = $(this).find('class').text();;
+				
+				coupler = $(this).find('couplerName').text();
+				if(coupler != '') {
+					txt = getText(x-18, y+9,'coupler-'+x,coupler,'#000');
+					$('#mytree').append(txt);
+				}
+                
+                circle = getCircle(x, y,id,parent,position,circleclass);
+				$('#mytree').append(circle);
+				
+
+				x1 = x;
+				y2 = y;
+				y3 = y;
+				pnode = getParent(parent);
+				if(pnode.length>0) {
+					x1 = pnode.find('x').text();
+					y1 = pnode.find('y').text();
+					y2 = parseInt(y1)+20;
+					y3 = parseInt(y)-20;
+				}
+				//line = getLine(x, y3-15, x1,y2+15,'rectline-'+x+y);
+				line = getLine(x, y3, x1,y2,'rectline-'+x+y);
+				$('#mytree').append(line);
+				
+				inpPowr = $(this).find('inputPower').text();
+				if(inpPowr != '') {
+					txt = getText(x-13, y-5,'inpPowr-'+x,inpPowr,'#53be6e','10px');
+
+					$('#mytree').append(txt);
+					//insert background
+					SVGRect = txt.getBBox();
+					console.log(SVGRect.width);
+					var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				    rect.setAttribute("x", SVGRect.x);
+				    rect.setAttribute("y", SVGRect.y);
+				    rect.setAttribute("width", SVGRect.width);
+				    rect.setAttribute("height", SVGRect.height);
+				    rect.setAttribute("fill", "white");
+				    document.getElementById('mytree').insertBefore(rect, txt);
+				}
+				
+				length = $(this).find('cableLength').text();
+				if(length != '') {
+				if(x==5060) {
+					txt = getText(x-35, y-35,'cableLength-'+x,length+'km','#ef5145');
+				} else {
+					var cnode = $('#rectline-'+x+y);
+					x1 = parseInt(cnode.attr('x1'));
+					x2 = parseInt(cnode.attr('x2'));
+					y1 = parseInt(cnode.attr('y1'));
+					y2 = parseInt(cnode.attr('y2'));
+					x1 = (x1+x2)/2;
+					y1 = (y1+y2)/2;
+					txt = getText(x1, y1-1,'cableLength-'+x,length+'km','#ef5145');
+				}
+					
+					
+					$('#mytree').append(txt);
+					//insert background
+					SVGRect = txt.getBBox();
+					console.log(SVGRect.width);
+					var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				    rect.setAttribute("x", SVGRect.x);
+				    rect.setAttribute("y", SVGRect.y);
+				    rect.setAttribute("width", SVGRect.width);
+				    rect.setAttribute("height", SVGRect.height);
+				    rect.setAttribute("fill", "white");
+				    document.getElementById('mytree').insertBefore(rect, txt);
+
+				}
+				pow1 = $(this).find('outputPower1').text();
+				if(pow1 != '') {
+					txt = getText(x-60, y+5,'outputPower1-'+x,pow1,'#54c0e4');
+					$('#mytree').append(txt);
+					//insert background
+					SVGRect = txt.getBBox();
+					console.log(SVGRect.width);
+					var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				    rect.setAttribute("x", SVGRect.x);
+				    rect.setAttribute("y", SVGRect.y);
+				    rect.setAttribute("width", SVGRect.width);
+				    rect.setAttribute("height", SVGRect.height);
+				    rect.setAttribute("fill", "white");
+				    document.getElementById('mytree').insertBefore(rect, txt);
+				}
+				pow2 = $(this).find('outputPower2').text();
+				if(pow2 != '') {
+					txt = getText(x+30, y+5,'outputPower2-'+x,pow2,'#54c0e4');
+					$('#mytree').append(txt);
+					//insert background
+					SVGRect = txt.getBBox();
+					console.log(SVGRect.width);
+					var rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+				    rect.setAttribute("x", SVGRect.x);
+				    rect.setAttribute("y", SVGRect.y);
+				    rect.setAttribute("width", SVGRect.width);
+				    rect.setAttribute("height", SVGRect.height);
+				    rect.setAttribute("fill", "white");
+				    document.getElementById('mytree').insertBefore(rect, txt);
+				}
+				
+                    
+                    fit();
+				
+				
+			});
+		  }
+		  
+		  function addChilds()
+		  {
+			id = $(lastNode).attr('id');
+			haveNode = false;
+			$nodes = $xml.find( "circles > circle > parent" );
+			$nodes.each(function(){
+				if($(this).text() == id) {
+					haveNode = true;
+				}
+			});
+			if(!haveNode) {
+				addSubChilds();
+			} else {
+				type = '';
+				node = getParent(id)
+				if(node) {
+					position = node.find('position').text();
+					exparent = node.find('parent').text();
+					power = 0;
+					if(position == '0' && exparent == 'root') {
+						type = 'root';
+					} else {
+						prid =  node.find('parent').text();
+						pnode = getParent(prid)
+						if(position == '-1') {
+							power =  pnode.find('outputPower1').text();
+						} else if(position == '1') {
+							power =  pnode.find('outputPower2').text();
+						}
+						
+					}
+					cableLength = $('#input_value_node').val();
+					coupler = $("#selectercouplername option:selected" ).text();
+					updateInput(node,cableLength,coupler,type,power);
+				}
+			}
+			updateValues();
+		  }
+		  function addSubChilds() {
+		    pid = $(lastNode).attr('id');
+			x = $(lastNode).attr('cx');
+			x = parseInt(x);
+			y = $(lastNode).attr('cy');
+			y = parseInt(y);
+			level = y;
+			level = level-100;
+			level = level/50;
+			level = level+1;
+			circ = $xml.find('circles');
+			y = y+50;
+			x1 =  x+ 50;
+			x2 =  x-50;
+			x2 = Math.abs(x2);
+			id = 'circle-'+x1+'-'+level;
+			xml = getcircleXml(id,x1,y,pid,level,'1','','','','','','childcircle');
+			$(circ).append(xml);
+			id = 'circle-'+x2+'-'+level;
+			xml = getcircleXml(id,x2,y,pid,level,'-1','','','','','','childcircle');
+			$(circ).append(xml);
+			type = '';
+			node = getParent(pid)
+			if(node) {
+				position = node.find('position').text();
+				exparent = node.find('parent').text();
+				power = 0;
+				if(position == '0' && exparent == 'root') {
+					type = 'root';
+				} else {
+					prid =  node.find('parent').text();
+					pnode = getParent(prid)
+					if(position == '-1') {
+						power =  pnode.find('outputPower1').text();
+					} else if(position == '1') {
+						power =  pnode.find('outputPower2').text();
+					}
+					
+				}
+				cableLength = $('#input_value_node').val();
+				coupler = $("#selectercouplername option:selected" ).text();
+				updateInput(node,cableLength,coupler,type,power);
+				
+			}
+		 }
+		
+		 function updateInput(input,clength,coupler, type,outputpowerVal)
+		 {
+			if((type == 'root')||(type == 'Node')) {
+				inputPowerValue = firstcouplerInputPowerFunction(clength);//parent  node 2nd below
+			} else {
+				inputPowerValue = allcouplerInputPowerFunction_except_first(clength,outputpowerVal);
+			}
+			outputpower1 = poweroutput1(inputPowerValue,coupler);//left new node
+			outputpower2 =	poweroutput2(inputPowerValue,coupler);//right new node
+			v1 = parseFloat(outputpower1);					
+			v2 = parseFloat(outputpower2);
+			console.log("v1: "+v1+" v2: "+v2)
+			if(dialogShowed == false)
+			{
+				if((v1<=(MinEndSignalO2))||( v2<=(MinEndSignalO2)))
+				{
+					alert("Minimum output power limitted to "+MinEndSignalO2+"dbm");
+					valueExceedsLimit = 1;
+					dialogShowed = true;
+				}
+			}
+			outputpower1 = roundToTwo(outputpower1); 
+			outputpower2 = roundToTwo(outputpower2);
+			inputPowerValue = roundToTwo(inputPowerValue);
+			input.find('inputPower').text(inputPowerValue);
+			input.find('cableLength').text(clength);
+			input.find('outputPower1').text(outputpower1);
+			input.find('outputPower2').text(outputpower2);
+			input.find('couplerName').text(coupler);
+			return false;
+		
+		 }
+		 
+		  function updateValues() {
+			maxlevel = 1;
+			circ = $xml.find('circles > circle > level');
+			circ.each(function(){
+				level = $(this).text();
+				level = parseInt(level);
+				if(level > maxlevel) {
+					maxlevel = level;
+				}
+			});
+			circ = $xml.find('circles > circle');
+			circ.each(function(){
+				x = $(this).find('x').text();
+				id = $(this).find('id').text();
+				parent = $(this).find('parent').text();
+				pnode = getParent(parent);
+				if(pnode.length>0) {
+					x = pnode.find('x').text();
+				}
+				position = $(this).find('position').text();
+				level = $(this).find('level').text();
+				x = parseInt(x);
+				y = parseInt(y);
+				level = parseInt(level);
+				position = parseInt(position);
+				
+				level = maxlevel - level;
+				level = Math.abs(level);
+				pow = Math.pow(2,level)*50;
+				if(position == 1) {
+					x =  x+ pow;
+				} else if(position == -1) {
+					x = x - pow;
+					x = Math.abs(x);
+				}
+				$(this).find('x').text(x);
+				
+				type = '';
+				node = pnode;
+				if(node) {
+					position = node.find('position').text();
+					exparent = node.find('parent').text();
+					power = 0;
+					if(position == '0' && exparent == 'root') {
+						type = 'root';
+					} else {
+						prid =  node.find('parent').text();
+						pnode = getParent(prid)
+						if(position == '-1') {
+							power =  pnode.find('outputPower1').text();
+						} else if(position == '1') {
+							power =  pnode.find('outputPower2').text();
+						}
+						
+					}
+					// console.log(power+' ');
+					cableLength = node.find('cableLength').text();
+					coupler = node.find('couplerName').text();
+					updateInput(node,cableLength,coupler,type,power);
+					
+				}
+					
+				});
+				
+			drawTree();
+		  }
+		  function getParent(id) 
+		  {
+			parentNode = false;
+			circ = $xml.find('circles > circle');
+			circ.each(function(){
+			parent = $(this).find('id');
+			txt = parent.text().trim();
+			id = id.trim();
+			if(txt == id) {
+				parentNode =  $(this);
+			}
+			});
+			
+			return parentNode;
+		  }
+		var point = [];
+            var LaserFrequencyA2 = 1310;
+            var LossPerKmH2 = 0.4;
+            var MinEndSignalO2 = -1;
+            var ConnectorLossV2 = .5;
+            var SaftyMarginAc2 = 0;
+            var TransmitterPowerA7 = 13;
+            var transmitter_inp_va;
+            var currentcouplerInputPower;
+            
+            var cableLength = 0;
+            var inputPowerValue = 0;
+            var coupler_name = 0;
+            var outputpower1 = 0;
+            var outputpower2 = 0;
+            //this.window.moveTo(10000, 30);
+           
+           
+            txt = getText(10000, 60,'transid','Transmitter','#ffffff');
+			
+            $('#mytree').append(txt);
+
+                $('#submittr').submit(function(){
+                    $('#transmitter').modal('hide');
+                    transmitter_inp_va = $('#transmitter_inp_pow').val();
+                    LaserFrequencyA2 = $('#transmitter_laser_frequency').val();
+                    LossPerKmH2 = $('#transmitter_loss_per_km').val();
+                    MinEndSignalO2 = $('#transmitter_min_end_signal').val();
+                    ConnectorLossV2 = $('#transmitter_connector_loss').val();
+                    SaftyMarginAc2 = $('#transmitter_safty_margin').val();
+                    TransmitterPowerA7 = transmitter_inp_va;
+                    // console.log('ev'+TransmitterPowerA7);
+                    $('#rectline').nextAll().remove();
+                    //txt_cab_powerIn = getText(10040, 20,'cable_pow',transmitter_inp_va+'dBm');
+                    setTransmitter();
+                    //changeValue();
+                    return false;
+                    $('#mytree').append(txt_cab_powerIn);
+
+                    return false;
+                });
+			//
+			function allcouplerInputPowerFunction_except_first(cableLength,outputpowerVal) {
+                allcouplerInputPower_except_first = outputpowerVal - (cableLength * LossPerKmH2) - (cableLength * SaftyMarginAc2);
+                return allcouplerInputPower_except_first;
+            }
+			
+			//only firstcouplerInputPower
+            function firstcouplerInputPowerFunction(cableLength) {
+				// console.log('tr'+TransmitterPowerA7);
+                firstcouplerInputPower = TransmitterPowerA7 - ConnectorLossV2 - (cableLength * LossPerKmH2) - (cableLength * SaftyMarginAc2);
+                return firstcouplerInputPower;
+            }
+			
+            function poweroutput1(powerinput,couplername)
+            {
+                var arraycouplers = ["1/99","2/98","3/97","4/96","5/95","6/94","7/93","8/92","9/91","10/90","12.5/87.5","15/85","20/80","25/75","30/70","33/67","35/65","40/60","45/55","50/50",
+					"1:4","1:8","1:16","1:32","1:64","1:128"
+                    ];
+                var arraycouplervaluesBranchA = [
+					"21.5","18.5","17.0","15.5","14.0","13.4","12.8","12.2","11.6","11.0","9.25","8.70","7.60","6.60","5.70","5.30","5.00","4.4","3.7","3.2",
+					"6.0","9.0","12.0","15.0","18.0","21.0"
+                   ];
+                var valueTakenIndex ;
+                for(var i = 0; i< arraycouplers.length; i++)
+                {
+                    var couplernameArrayElement = arraycouplers[i].trim();
+                    var couplernameInput = couplername.trim();
+				
+                    if(couplernameArrayElement.localeCompare(couplernameInput)==0)
+                    {
+                        valueTakenIndex = i;
+						
+                    }
+                }
+				
+                var output1Pow = powerinput-arraycouplervaluesBranchA[valueTakenIndex];
+                //alert("output1Pow: "+output1Pow+" arraycouplervaluesBranchA[valueTakenIndex]: "+arraycouplervaluesBranchA[valueTakenIndex]+" powerinput: "+powerinput+" valueTakenIndex: "+valueTakenIndex);
+                return output1Pow;
+				
+            }
+			
+            function poweroutput2(powerinput,couplername)
+            {
+			
+			
+                var arraycouplers = [
+					"1/99","2/98","3/97","4/96","5/95","6/94","7/93","8/92","9/91","10/90","12.5/87.5","15/85","20/80","25/75","30/70","33/67","35/65","40/60","45/55","50/50",
+                    "1:4","1:8","1:16","1:32","1:64","1:128"
+					];
+                var arraycouplervaluesBranchB = [
+					"0.15","0.15","0.20","0.23","0.25","0.30","0.34","0.39","0.44","0.49","0.55","0.80","1.10","1.40","1.70","1.90","2.20","2.50","2.90","3.2",
+					"6.0","9.0","12.0","15.0","18.0","21.0"
+					];
+                var valueTakenIndex ;
+                for(var i = 0; i< arraycouplers.length; i++)
+                {
+                    var couplernameArrayElement = arraycouplers[i].trim();
+                    var couplernameInput = couplername.trim();
+				
+                    if(couplernameArrayElement.localeCompare(couplernameInput)==0)
+                    {
+                        valueTakenIndex = i;
+                    }
+                }
+				
+                var output2Pow = powerinput-arraycouplervaluesBranchB[valueTakenIndex];
+               // alert("output2Pow: "+output2Pow+" arraycouplervaluesBranchB[valueTakenIndex]: "+arraycouplervaluesBranchB[valueTakenIndex]+" powerinput: "+powerinput+" valueTakenIndex: "+valueTakenIndex);
+                return output2Pow;
+            }
+			
+            function changeValue()
+            {
+				// xml = xml+"<tree><transmitter><x>RSS Title</x></transmitter></tree>",
+				  xmlDoc = $.parseXML( xml ),
+				  $xml = $( xmlDoc ),
+				 drawTree();
+				// Append "RSS Title" to #someElement
+				//$( "#someElement" ).append( $title.text() );
+				 
+				// Change the title to "XML Title"
+				//$title.text( "XML Title" );
+				 
+				// Append "XML Title" to #anotherElement
+				//$( "#anotherElement" ).append( $title.text() );
+		    }
+		 function roundToTwo(num) {    
+                return +(Math.round(num + "e+2")  + "e-2");
+            }
+				$('#submitcoupler').submit(function() {
+				if(parseInt(valueExceedsLimit) == 1)
+				{
+					return false;
+				}
+					 cableLength = $('#input_value_node').val();//parent  node above
+                     inputPowerValue = firstcouplerInputPowerFunction(cableLength);//parent  node 2nd below
+                     coupler_name = $("#selectercouplername option:selected" ).text();//inside
+                     outputpower1 = poweroutput1(inputPowerValue,coupler_name);//left new node
+                     outputpower2 =	poweroutput2(inputPowerValue,coupler_name);//right new node
+					 v1 = parseFloat(outputpower1);					
+					 v2 = parseFloat(outputpower2);
+					 if(dialogShowed == false)
+					 {
+					 if((v1<=(MinEndSignalO2))||( v2<=(MinEndSignalO2)))
+					 {
+						alert("Minimum output power limitted to "+MinEndSignalO2+"dbm");
+						valueExceedsLimit = 1;	
+						dialogShowed = true;						
+					 }
+					 }
+					
+					 outputpower1 = roundToTwo(outputpower1); 
+					 outputpower2 = roundToTwo(outputpower2);
+					 
+						if(lastNode != '') {
+							$('#myModal').modal('hide');
+							$('#rectline').nextAll().remove();
+							addChilds();
+						}
+					
+					
+					return false;
+						
+                });
+            function resetJs(obj) {
+			valueExceedsLimit = 0;	
+			dialogShowed = false;
+			var pnode = $(obj).attr('parent');
+			if(pnode != 'root') {
+				var pcx = $('#'+pnode).attr('cx');
+				var outputpw = $('#outputPower1-'+pcx).text();
+				var outputpw2 = $('#outputPower2-'+pcx).text();
+				if(outputpw && outputpw2) {
+					outputpw = outputpw.split(' ');
+					outputpw2 = outputpw2.split(' ');
+					if(outputpw.length>1 && outputpw2.length>1) {
+					 v1 = parseFloat(outputpw[0]);					
+					 v2 = parseFloat(outputpw2[0]);
+					 if((v1<=(MinEndSignalO2))||( v2<=(MinEndSignalO2)))
+					 {
+						valueExceedsLimit = 1;	
+						dialogShowed = true;						
+					 }
+					}
+				}
+			}
+			if(parseInt(valueExceedsLimit) != 1)
+				{
+					$('#myModal').modal('show');
+					lastNode = obj;
+				}	
+				else{
+				alert("Reload to create new calculator");
+				}
+                //setNew(nextLevel);
+                
+            }
+            function getIndex(id){
+                for(i=0;i<point.length;i++) {
+                    if(point[i].id == id){
+                        return i;
+                    }
+                }
+                return -1;
+            }
+            function updateLine(level) {
+                tree = $('#mytree line');
+                //maxlevel = getMaxLevel();
+                tree.each(function () {
+                    $id = $(this).attr('id');
+                    level = $id.split('line-');
+                    level[1];
+                    x = $('#'+level[1]).attr('cx');
+                    supar = $('#'+$('#'+level[1]).attr('parent'));
+                    $(this).attr('x1',supar.attr('cx'));
+                    $(this).attr('x2',x);
+                });
+                    
+            }
+            function setNew(level) {
+                tree = $('#mytree');
+                maxlevel = getMaxLevel();
+                if(maxlevel>level) {
+                    level =maxlevel;
+                }
+                j = 1;
+                for (i = level; i >=1; i--) {
+                    nodes = tree.find('.level-' + j);
+                    nodes.each(function () {
+                        x = parseInt($(this).attr('cx'));
+                        parent = $(this).attr('parent');
+                        //ptot = parseInt($('#' + parent).attr('cx'))+50;
+                        //$('#' + parent).attr('cx',ptot);
+                        if(parent==0) {
+                            total = x;
+                        } else {
+                            //console.log($('#' + parent));
+                            if($('#' + parent).length>0) {
+                                total = parseInt($('#' + parent).attr('cx'));
+                            } else {
+                                total = x;
+                            }
+                        }
+
+                        type = $(this).attr('node');
+                        if (type == 1) {
+                            x =  total+ Math.pow(2,i-1)*50;
+                        } else if (type == -1) {
+                            x =  total- Math.pow(2,i-1)*50;
+                            x = Math.abs(x);
+                        }
+                        //$id = $(this).attr('id');
+                        //$('#line-'+$id).attr('x2',x);
+                        addValue($(this), 'cx', x);
+                    });
+                    j++;
+
+                }
+            }
+              function addValue(obj, type, value) {
+                obj.attr(type, value);
+                return obj;
+            }
+            function getNode(node, x, y, level, type, parent) {
+                node = addValue(node, 'cx', x);
+                node = addValue(node, 'cy', y);
+                node = addValue(node, 'node', type);
+                node = addValue(node, 'parent', parent);
+                node = addValue(node, 'id', 'rand-' + x + '-' + level);
+                node = addValue(node, 'class', 'subnodes level-' + level);
+                return node;
+            }
+            function getMaxLevel() {
+                var tree = $('#mytree circle');
+                max = 1;
+                tree.each(function(){
+                    level = $(this).attr('class');
+                    level = level.split('level-');
+                    level = parseInt(level[1]);
+                    if(level>max) {
+                        max=level;
+                    }
+                });
+                
+                return max;
+            }
+            function getLine(x1, y1, x2,y2,id) {
+                line = document.createElementNS("http://www.w3.org/2000/svg", 'line');
+                line.setAttribute('id', id);
+                line.setAttribute('x1', x1);
+                line.setAttribute('y1', y1);
+                line.setAttribute('x2', x2);
+                line.setAttribute('y2', y2);
+                line.setAttribute('class', 'subnodes');
+                line.setAttribute('style', 'stroke:#eec16e;stroke-width:1');
+                return line;
+            }
+            function getText(x, y,id,text,fill,fontSize) {
+				if(fontSize == undefined) {
+					fontSize = '';
+				}
+                line = document.createElementNS("http://www.w3.org/2000/svg", 'text');
+                line.setAttribute('id', id);
+                line.setAttribute('x', x);
+                line.setAttribute('y', y);
+                line.textContent= text;
+                line.setAttribute('class', 'subnodes');
+                line.setAttribute('fill', fill);
+				if(fontSize != '') {
+					line.setAttribute('style',"font-weight:bold;font-size:"+fontSize);
+				} else {
+					line.setAttribute('style',"font-weight:bold");
+				}
+                return line;
+            }
+            function getCircle(x, y,id,parent,position,circleclass) {
+                circle = document.createElementNS("http://www.w3.org/2000/svg", 'circle');
+                circle.setAttribute('id', id);
+                circle.setAttribute('cx', x);
+                circle.setAttribute('cy', y);
+				circle.setAttribute('r', 20);
+                circle.setAttribute('onclick', 'resetJs(this)');
+                circle.setAttribute('parent', parent);
+				circle.setAttribute('position', position);
+				circle.setAttribute('class', circleclass);
+                if(circleclass=='childcircle'){
+                    circle.setAttribute('fill', 'url(#image)');
+                }
+
+
+               // circle.setAttribute('style', 'stroke:#000;stroke-width:1;fill:white;');
+				
+                return circle;
+            }
+            function saveXmlString(){
+            var markup = document.documentElement.innerHTML;
+            var width = mytree.style.width;
+          <!--  alert(markup);-->
+            	Android.saveXmlString(width);
+            	<!--writeFile(markup);-->
+            	}
+    	  function changeDimensions() {
+        		
+    		}
+                var countx=0;
+                
+    		function fit()
+			{
+			 // document.getElementById("mytree").setAttribute("width", "5000");
+			//document.getElementById("mytree").setAttribute("height", "1000");
+			//  document.getElementById("mytree").setAttribute("viewbox", "0 0 1000 730");
+          countx++;
+    			var bb=mytree.getBBox();
+    			var bbx=bb.x;
+    			var bby=bb.y;
+    			var xfactor = (lastLevel-2)*50;
+    			yFactor = 50*(Math.pow(2,lastLevel)+Math.pow(2,(lastLevel-1))-1);
+                var bbw;
+                if(countx<37){
+    			     bbw=(bb.width+(yFactor/(lastLevel))-bbx);
+
+                }
+                else{
+                    bbw=bb.width;
+                }
+    			//var bbw=((bb.width-bbx)+(bb.width-bby))/2;
+    			var bbh=bb.height;
+    			var vb=[bbx,bby,bbw,bbh];
+    			 mytree.setAttribute("viewBox", vb.join(" "));
+    			//vbValue.value=vb.join(" ");
+    			//document.getElementById("divfit").setAttribute("width", bbw+"px");
+    			<!--divfit.style.width=bbw+"px";-->
+   				mytree.style.width=bbw+"px";
+   				mytree.style.height=bbh+"px";
+  				
+  				console.log("bbx="+bbx);
+  				console.log("bby="+bby);
+  				console.log("hght="+bbh);
+  				console.log("width="+bbw);
+  			
+  	<!--saveXmlString();-->
+			}
+			function writeFile(data){
+				var fso,fileHandle;
+				fso = new ActiveObject("Scripting.FileSystemObject");
+				fileHandle = fso.CreateTextFile("test.txt" , true);
+				fileHandle.write(data);
+				fileHandle.close();
+			}
+			function finalWidthAfterZoomOut(){
+			 var width = mytree.style.width;
+				Android.WidthAfterZoomOut(width);
+			}
+        </script>
+        <script>
+			$(document).ready(function(){
+				$(".btn").click(function(){
+					Android.showAdInterstitialFromJs();
+				});
+			});
+        </script>
+    </body>
+
+</html>
